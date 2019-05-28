@@ -2,7 +2,7 @@
 
 namespace snoblucha\Abo;
 
-class Abo_group {
+class Group {
 	private $account_number = null;
 	private $account_pre_number = null;
 	private $items = array();
@@ -48,10 +48,10 @@ class Abo_group {
 	/**
 	 * 
 	 * adds abo_item to group. and returns it for set up/
-	 * @return abo_item
+	 * @return Item
 	 */
 	public function addItem($account_number, $amount, $variable_sym){
-		$item = new Abo_item($account_number, $amount, $variable_sym);
+		$item = new Item($account_number, $amount, $variable_sym);
 		$this->items[] = $item;
 		return $item;		
 	}

@@ -2,9 +2,9 @@
 
 namespace snoblucha\Abo\Account;
 
-use snoblucha\Abo\Abo_group;
+use snoblucha\Abo\Group;
 
-class Abo_account_file{
+class File {
 	
 	const UHRADA = 1501; 
 	const INKASO = 1502;
@@ -38,7 +38,7 @@ class Abo_account_file{
 	 * 
 	 * Set the bank deparment - pobocka. 0 in general
 	 * @param int $number
-	 * @return abo_account_file
+	 * @return File
 	 */
 	public function setBankDepartment($number){
 		$this->bankDepartment = $number;
@@ -49,7 +49,7 @@ class Abo_account_file{
 	 * 
 	 * set number of file. Should be called only from abo
 	 * @param unknown_type $number
-	 * @return abo_account_file
+	 * @return File
 	 */
 	public function setNumber($number) {
 		$this->number = $number;
@@ -71,7 +71,7 @@ class Abo_account_file{
 	 * nastavit kod banky, ktere se dany soubor tyka(ktere to posilame?)
 	 * 
 	 * @param int/string $bankCode kod banky
-	 * @return abo_account_file
+	 * @return File
 	 */
 	public function setBank($bankCode){
 		$this->bank = $bankCode;
@@ -81,10 +81,10 @@ class Abo_account_file{
 	/**
 	 * Add a group to item and return it to set up
 	 * 
-	 * @return abo_group
+	 * @return Group
 	 */
 	public function addGroup(){
-		$item = new Abo_group();
+		$item = new Group();
 		$this->items[] = $item;
 		return $item;
 	}

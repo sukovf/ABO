@@ -2,7 +2,7 @@
 
 namespace snoblucha\Abo;
 
-use snoblucha\Abo\Account\Abo_account_file;
+use snoblucha\Abo\Account\File;
 
 class Abo {
 	const HEADER = 'UHL1';
@@ -64,10 +64,10 @@ class Abo {
 	 * 
 	 * Enter description here ...
 	 * @param int $type - 1501 : platebni prikaz , 1502 inkaso  abo_account_file::UHRADA|abo_account_file::INKASO
-	 * @return abo_account_file
+	 * @return File
 	 */
 	public function addAccountFile($type = 1501){
-		$item = new Abo_account_file($type);
+		$item = new File($type);
 		$this->items[] = $item;
 		$item->setNumber(count($this->items));
 		return $item;

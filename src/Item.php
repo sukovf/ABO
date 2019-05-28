@@ -2,7 +2,7 @@
 
 namespace snoblucha\Abo;
 
-class Abo_item {
+class Item {
 	private $amount;
 	private $variable_sym = 0;
 	private $bank = 0;
