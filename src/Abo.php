@@ -100,9 +100,9 @@ class Abo {
 	public static function account($number, $pre = null){
 		$res = '';
 		if($pre){
-				$res.= sprintf("%d-",$pre);
+				$res.= sprintf("%s-",$pre);
 			}
-		$res .= sprintf("%d",  $number);
+		$res .= sprintf("%s",  $number);
 		return $res;
 	}
 	

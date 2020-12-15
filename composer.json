@@ -1,12 +1,12 @@
 {
-    "name": "wpj-cz/abo",
+    "name": "sukovf/abo",
     "description": "PHP generator for ABO file format",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "wpj s.r.o",
-            "email": "wpj@wpj.cz"
+            "name": "Martin Souček",
+            "email": "msoucek@seznam.cz"
         }
     ],
     "minimum-stability": "stable",
