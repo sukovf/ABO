@@ -106,7 +106,7 @@ class Abo {
 		$res.= "\r\n";
 
 		foreach ($this->items as $item) {
-			$res .= $item->generate(true, $this->senderBank);
+			$res .= $item->generate($this->senderBank);
 		}
 
 		return $res;

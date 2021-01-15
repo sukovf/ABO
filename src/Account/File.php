@@ -52,7 +52,7 @@ class File {
 	/**
 	 *
 	 * set number of file. Should be called only from abo
-	 * @param unknown_type $number
+	 * @param int $number
 	 * @return File
 	 */
 	public function setNumber($number) {
