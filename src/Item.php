@@ -102,19 +102,19 @@ class Item {
 	/**
 	 * 
 	 * Enter description here ...
-	 * @param boolean $supress_number if the destination nubmer is in the group header
+	 * @param boolean $supress_number if the destination number is in the group header
 	 * @return string
 	 */
 	public function generate($supress_number = true){
-		$res = "";
+		$res = '';
 		if(!$supress_number) {
-			$res .= Abo::account($this->dest_account,$this->dest_account_pre)." ";
+			$res .= Abo::account($this->dest_account,$this->dest_account_pre) . ' ';
 		}
 		$res .= sprintf("%s %d %s %s%04d ", Abo::account($this->account_number,$this->account_pre), $this->amount, $this->variable_sym, $this->bank, $this->const_sym);
 		
-		$res .= ($this->spec_sym ? $this->spec_sym : ' ').' ';
-		$res .= ($this->message ? substr('AV:'.$this->message, 0,38) : ' ');
-		$res.="\r\n";
+		$res .= ($this->spec_sym ? $this->spec_sym : ($this->bank == '6800' ? '' : ' ')) . ' ';
+		$res .= ($this->message ? substr('AV:' . $this->message, 0,38) : ' ');
+		$res .= "\r\n";
 		
 		return $res;
 		
