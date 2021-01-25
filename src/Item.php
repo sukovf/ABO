@@ -113,7 +113,7 @@ class Item {
 		}
 		$res .= sprintf("%s %d %s %s%04d ", Abo::account($this->account_number,$this->account_pre), $this->amount, $this->variable_sym, $this->bank, $this->const_sym);
 
-		$res .= ($this->spec_sym ? $this->spec_sym : ($senderBank == '6800' ? '' : ' ')) . ' ';
+		$res .= (strlen($this->spec_sym) ? $this->spec_sym : ($senderBank == '6800' ? '' : ' ')) . ' ';
 		$res .= ($this->message ? substr('AV:' . $this->message, 0,38) : ' ');
 		$res .= "\r\n";
 

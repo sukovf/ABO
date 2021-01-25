@@ -2,22 +2,36 @@
 
 namespace snoblucha\Abo;
 
-class Group {
+/**
+ * Class Group
+ * @package snoblucha\Abo
+ */
+class Group
+{
 	private $account_number = null;
 	private $account_pre_number = null;
-	private $items = array();
-	private $dueDate = null; 
-	
-	public function generate(){
+
+	/** @var Item[] */
+	private $items = [];
+
+	private $dueDate = null;
+
+	/**
+	 * @param string $senderBank
+	 *
+	 * @return string
+	 */
+	public function generate($senderBank = '')
+	{
 		$res = "2 ";
 		if($this->account_number != null) {
-			$res .= Abo::account($this->account_number, $this->account_pre_number)." ";
+			$res .= Abo::account($this->account_number, $this->account_pre_number) . " ";
 		} 
 		if($this->dueDate == null) $this->setDate(); //date is not set, so today is the day
 		$res .= sprintf("%014d %s", $this->getAmount(), $this->dueDate);		
 		$res .= "\r\n";
 		foreach ($this->items as $item) {
-			$res.= $item->generate($this->account_number != null);
+			$res .= $item->generate($this->account_number != null, $senderBank);
 		}
 		$res .= "3 +\r\n";
 		return $res;
