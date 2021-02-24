@@ -106,14 +106,18 @@ class Item {
 	 * @param string $senderBank
 	 * @return string
 	 */
-	public function generate($supress_number = true, $senderBank = '') {
+	public function generate($supress_number = true, $senderBank = '')
+	{
+		$formatter = $this->getFormatter($senderBank);
+
 		$res = '';
 		if(!$supress_number) {
 			$res .= Abo::account($this->dest_account,$this->dest_account_pre) . ' ';
 		}
-		$res .= sprintf("%s %d %s %s%04d ", Abo::account($this->account_number,$this->account_pre), $this->amount, $this->variable_sym, $this->bank, $this->const_sym);
 
-		$res .= (strlen($this->spec_sym) ? $this->spec_sym : ($senderBank == '6800' ? '' : ' ')) . ' ';
+		$res .= sprintf("%s %d %s %s%04d ", Abo::account($this->account_number,$this->account_pre), $this->amount, $formatter->formatVariableSymbol($this->variable_sym), $this->bank, $formatter->formatConstantSymbol($this->const_sym));
+
+		$res .= $formatter->formatSpecificSymbol($this->spec_sym) . ' ';
 		$res .= ($this->message ? substr('AV:' . $this->message, 0,38) : ' ');
 		$res .= "\r\n";
 
@@ -121,5 +125,20 @@ class Item {
 
 	}
 
+	/**
+	 * @param string $bankCode
+	 *
+	 * @return DefaultFormatter
+	 */
+	private function getFormatter($bankCode)
+	{
+		$defaultClassName = 'snoblucha\Abo\DefaultFormatter';
+		$className = 'snoblucha\Abo\Formatter' . $bankCode;
 
+		if (class_exists($className)) {
+			return new $className();
+		} else {
+			return new $defaultClassName();
+		}
+	}
 }
