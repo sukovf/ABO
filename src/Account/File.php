@@ -3,10 +3,13 @@
 namespace snoblucha\Abo\Account;
 
 use snoblucha\Abo\Group;
-use snoblucha\Abo\Item;
 
-class File {
-
+/**
+ * Class File
+ * @package snoblucha\Abo\Account
+ */
+class File
+{
 	const UHRADA = 1501;
 	const INKASO = 1502;
 
@@ -15,7 +18,7 @@ class File {
 	private $bank = 0;
 	private $bankDepartment = 0;
 
-	/** @var Item[] */
+	/** @var Group[] */
 	private $items = array();
 
 	public function __construct($type = self::UHRADA){
@@ -30,9 +33,9 @@ class File {
 	 */
 	public function generate($senderBank = '')
 	{
-		$res = sprintf("1 %04d %03d%03d %04d\r\n",$this->type, $this->number, $this->bankDepartment, $this->bank);
+		$res = sprintf("1 %04d %03d%03d %04d\r\n", $this->type, $this->number, $this->bankDepartment, $this->bank);
 		foreach ($this->items as $item) {
-			$res.= $item->generate(true, $senderBank);
+			$res.= $item->generate($senderBank);
 		}
 		$res .= "5 +\r\n";
 		return $res;
